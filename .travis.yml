@@ -89,6 +89,14 @@ matrix:
     - stage: test
       env:
         - FEDORA_CI=Y
+      arch: amd64
+      services:
+        - docker
+      if: type != pull_request
+    - stage: test
+      env:
+        - FEDORA_CI=Y
+      arch: ppc64le
       services:
         - docker
       if: type != pull_request
