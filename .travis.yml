@@ -94,13 +94,6 @@ matrix:
       services:
         - docker
       if: type != pull_request
-    - stage: test
-      env:
-        - FEDORA_CI=Y
-      arch: ppc64le
-      services:
-        - docker
-      if: type != pull_request
     - jdk: openjdk-ea
       sudo: required
       addons:
@@ -110,6 +103,17 @@ matrix:
         - JDK=12
         - TZ=America/New_York # flips between −05:00 and −04:00
         - BUILD_SCAN=Y
+      arch: amd64
+    - jdk: openjdk-ea
+      sudo: required
+      addons:
+        postgresql: "10"
+      env:
+        - PG_VERSION=10
+        - JDK=12
+        - TZ=America/New_York # flips between −05:00 and −04:00
+        - BUILD_SCAN=Y
+      arch: ppc64le
     - jdk: openjdk-ea
       sudo: required
       addons:
